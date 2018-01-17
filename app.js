@@ -13,6 +13,7 @@ $(document).ready(function() {
         alert('opps');
       }
     });
+    $inputSearch.val('');
   }
   function renderMovies(response) {
     console.log(response);
