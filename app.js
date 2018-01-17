@@ -26,10 +26,6 @@ $(document).ready(function() {
       var movie = movies[m];
       var title = movie.Title;
       var imdbID = movie.imdbID;
-      var poster = movie.Poster;
-      var array = [];
-      console.log([title, imdbID, poster]);
-
       $.getJSON('http://www.omdbapi.com/?apikey=3a181f1c&t=' + title + '&type=movie', function(data) {
         var keys = Object.keys(data);
         console.log(data);
@@ -37,14 +33,21 @@ $(document).ready(function() {
         console.log(word);
         var patt = /Family/g;
         result = patt.test(word);
-        array.push(result);
-        console.log(array);
+        console.log(result);
+        var wordTwo = data[keys[5]];
+        console.log(wordTwo);
+        var pattTwo = /Animation/g;
+        resultTwo = pattTwo.test(wordTwo);
+        console.log(resultTwo);
+        console.log(data.Poster);
+        if (result === true || resultTwo === true) {
+          var posterImg = $('<img class="poster-movie" src="' + data.Poster + '" />');
+          liMovie = $('<li class="list-group-item">');
+          liMovie.append(data.Title);
+          liMovie.append(posterImg);
+          resultsUl.append(liMovie);
+        }
       });
-      var liMovie = $('<li class="list-group-item">');
-      var posterImg = $('<img class="poster-movie" src="' + poster + '" />');
-      liMovie.append(posterImg);
-      liMovie.append(title);
-      resultsUl.append(liMovie);
       // var tr = $('<tr>');
       // var td = $('<td>');
       // td.append(movie.Title);
