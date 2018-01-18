@@ -32,21 +32,27 @@ $(document).ready(function() {
         console.log(data);
         var word = data[keys[5]];
         console.log(word);
+        //  identificando palabra "Family"
         var patt = /Family/g;
         result = patt.test(word);
         console.log(result);
         var wordTwo = data[keys[5]];
         console.log(wordTwo);
+        //  identificando palabra "Animation"
         var pattTwo = /Animation/g;
         resultTwo = pattTwo.test(wordTwo);
         console.log(resultTwo);
         console.log(data.Poster);
+        //  array de Productoras
+        //  var producers = ['Disney', 'Network', 'DreamWorks', 'Universal', 'Pixar', 'Warner', 'Ilumination'];
         if (result === true || resultTwo === true) {
           var posterImg = $('<img class="poster-movie" src="' + data.Poster + '" />');
           liMovie = $('<li class="list-group-item">');
           liMovie.append(data.Title);
           liMovie.append(posterImg);
           resultsUl.append(liMovie);
+        } else if ($('#prod1').is(':checked')) {
+          alert('hi');
         }
       });
       // var tr = $('<tr>');

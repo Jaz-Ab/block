@@ -13,9 +13,38 @@
     <h1>Buscar peliculas</h1>
     <div class="row">
       <div class="col-xs-6">
-        <input type="text" id="title" class="form-control" placeholder="kung fu panda">
+        <input type="text" id="title" class="form-control" placeholder="Nombre de la película...">
         <br>
         <button id="searchBtn" class="btn btn-block btn-primary">Buscar</button><br>
+
+        <h3>Productoras</h3><br>
+        <label><input type="checkbox" id="prod1" value="Disney">Disney</label><br>
+        <label><input type="checkbox" id="prod2" value="DreamWorks">DreamWorks Pictures</label><br>
+        <label><input type="checkbox" id="prod3" value="Cartoon">Cartoon Network</label><br>
+        <!--<label><input type="checkbox" id="cbox1" value="first_checkbox">Toei Animation</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Nickelodeon</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Fox</label><br>-->
+        <label><input type="checkbox" id="prod4" value="Universal">Universal Cartoon Studios</label><br>
+        <label><input type="checkbox" id="prod5" value="Pixar">Pixar</label><br>
+        <label><input type="checkbox" id="prod6" value="Warner">Warner Bros Entertainment</label><br>
+        <label><input type="checkbox" id="prod7" value="Ilumination">Ilumination</label><br>
+        <h3>Clasificación</h3><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Audiciencia General(G) - (TV-G)</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Niños de 7 años a más (TV-Y7)</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Apto para los más pequeños 2 a 6 años (TV-Y)</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Orientación de los Padres(PG) (TV-PG)</label><br>
+        <h3>Lenguaje</h3><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Inglés</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Español</label><br>
+        <h3>Año</h3><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">2017 en adelante</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">2010 a 2016</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Antes del 2010</label><br>
+        <h3>Valoradas</h3><br><!--{Source: "Rotten Tomatoes", Value: "77%"}-->
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Entre 70% a 100%</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Entre 50% a 70%</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Entre 0% a 50%</label><br>
+
         <h3>Resultados</h3><br>
         <ul id="results" class="list-group"></ul>
       </div>
