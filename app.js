@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var allList = [];
   var $inputSearch = $('#title');
   var $btnSearch = $('#searchBtn');
   $btnSearch.click(searchByTitle);
@@ -17,10 +18,9 @@ $(document).ready(function() {
   }
   function renderMovies(response) {
     console.log(response);
-    // var table = $('<table>');
-    // table.addClass('table');
     var movies = response.Search;
     var resultsUl = $('#results');
+    var informationUl = $('#info');
     resultsUl.empty();
 
     for (var m in movies) {
@@ -29,48 +29,106 @@ $(document).ready(function() {
       var imdbID = movie.imdbID;
       $.getJSON('http://www.omdbapi.com/?apikey=3a181f1c&t=' + title + '&type=movie', function(data) {
         var keys = Object.keys(data);
-        console.log(data);
         var word = data[keys[5]];
-        console.log(word);
+        console.log(data);
         //  identificando palabra "Family"
         var patt = /Family/g;
-        result = patt.test(word);
+        var result = patt.test(word);
         console.log(result);
         var wordTwo = data[keys[5]];
         console.log(wordTwo);
         //  identificando palabra "Animation"
         var pattTwo = /Animation/g;
-        resultTwo = pattTwo.test(wordTwo);
+        var resultTwo = pattTwo.test(wordTwo);
         console.log(resultTwo);
-        console.log(data.Poster);
-        //  array de Productoras
-        //  var producers = ['Disney', 'Network', 'DreamWorks', 'Universal', 'Pixar', 'Warner', 'Ilumination'];
         if (result === true || resultTwo === true) {
           var posterImg = $('<img class="poster-movie" src="' + data.Poster + '" />');
-          liMovie = $('<li class="list-group-item">');
+          var liMovie = $('<li class="list-group-item">');
+          
           liMovie.append(data.Title);
           liMovie.append(posterImg);
           resultsUl.append(liMovie);
-        } else if ($('#prod1').is(':checked')) {
-          alert('hi');
+          allList.push(data);
+          $('#prod2').on('click', function(event) {
+            var production = $('#prod2').val();
+            if (event.target.checked) {
+              resultsUl.hide();
+              findProduction(production);
+            } else {
+              resultsUl.show();
+            }
+          });
+        }
+        //  habilitando checkboxs
+        //  Disney
+        $('#prod1').on('click', function(event) {
+          var production = $('#prod1').val();
+          if (event.target.checked) {
+            findProduction(production);
+          }
+        });
+        //  DreamWorks
+
+        //  Cartoon
+        $('#prod3').on('click', function(event) {
+          var production = $('#prod3').val();
+          if (event.target.checked) {
+            findProduction(production);
+          }
+        });
+        //  Universal
+        $('#prod4').on('click', function(event) {
+          var production = $('#prod4').val();
+          if (event.target.checked) {
+            findProduction(production);
+          }
+        });
+        //  Pixar
+        $('#prod5').on('click', function(event) {
+          var production = $('#prod5').val();
+          if (event.target.checked) {
+            findProduction(production);
+          }
+        });
+        //  Warner
+        $('#prod6').on('click', function(event) {
+          var production = $('#prod6').val();
+          if (event.target.checked) {
+            findProduction(production);
+          }
+        });
+        //  ilumination
+        $('#prod7').on('click', function(event) {
+          var production = $('#prod7').val();
+          if (event.target.checked) {
+            findProduction(production);
+          }
+        });
+        //   funcion para reconocer las productoras
+        function findProduction(nameProduction) {
+          for (var i = 0; i < allList.length; i++) {
+            var production = allList[i].Production;
+            console.log(production);
+            var regex = new RegExp(nameProduction, 'g');
+            var result = regex.test(production);
+            console.log(result);
+            var tag = /DreamWorks/g;
+            var resultTwo = tag.test(production);
+            console.log(resultTwo);
+            if (result === true || resultTwo === true) {
+              console.log('si es de ' + nameProduction);
+              var posterImg = $('<img class="poster-movie" src="' + allList[i].Poster + '" />');
+              console.log(allList[i]);
+              liMovieTwo = $('<li class="list-group-item">');
+              liMovieTwo.append(allList[i].Title);
+              liMovieTwo.append(posterImg);
+              resultsUl.append(liMovieTwo);
+            }
+          }
         }
       });
-      // var tr = $('<tr>');
-      // var td = $('<td>');
-      // td.append(movie.Title);
-      // tr.append(td);
-
-      // var imgMovie = $('<img class="poster-movie">');
-      // imgMovie.attr('src', movie.Poster);
-      // td = $('<td>');
-      // td.append(imgMovie);
-      // tr.append(td);
-
-      // table.append(tr);
     }
-    // $('#searchResults').append(table);
   }
-
   function renderError(error) {
     console.error(error);
   }
